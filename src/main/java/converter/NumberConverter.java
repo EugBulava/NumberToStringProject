@@ -8,6 +8,8 @@ import exceptions.NumberLengthException;
  * @author Eugene Bulava
  */
 public interface NumberConverter<T> {
-
+    /**
+     * This method converts number to parameterized format T.
+     */
     T convert() throws NumberLengthException;
 }

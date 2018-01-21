@@ -18,24 +18,38 @@ import java.util.Collections;
  */
 public class IntegerNumberToStringConverter implements NumberConverter<String> {
 
-    //input value
+    /**
+     * Input number to convert
+     */
     private BigInteger amount;
-
-    //forms of type number
+    /**
+     * Forms of numbers from referenceBook
+     */
     private String[][] forms;
 
     private static final String FILE_PATH = "src/main/resources/referenceBook.txt";
-
-
+    /**
+     * Creates a new instance of IntegerNumberToStringConverter with the given number as string and load referenceBook from file.
+     */
     public IntegerNumberToStringConverter(String s) throws NumberFormatException {
         this.amount = new BigInteger(s);
         this.forms = readFormsFromFile();
     }
-
+    /**
+     * Creates a new instance of IntegerNumberToStringConverter with the given BigInteger number and load referenceBook from file.
+     */
     public IntegerNumberToStringConverter(BigInteger bigNumber) {
         this.amount = bigNumber;
         this.forms = readFormsFromFile();
     }
+
+    /**
+     * This is the main method to convert number to string.
+     *
+     * @return String This returns number as words.
+     * @throws NumberLengthException when number is bigger than the last value in referenceBook .
+     * @see NumberLengthException .
+     */
 
     public String convert() throws NumberLengthException {
 
@@ -68,7 +82,12 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
 
         return result;
     }
-
+    /**
+     * This method converts all number's segments to words.
+     *
+     * @param segments List of segments
+     * @return String This returns segments as string.
+     */
     private String segmentsToString(ArrayList segments) {
 
         String result = "";
@@ -125,17 +144,30 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
 
         return result;
     }
-
-    private String morph(long n, String from1, String from2, String from5) {
+    /**
+     * This is the method to check what form for number.
+     * For example if 1 - return form1, if 2-5 - return form2 and other form5
+     * @param n it current segment
+     * @param form1 first form
+     * @param form2 second form
+     * @param form5 third form
+     * @return String this return string of form
+     */
+    private String morph(long n, String form1, String form2, String form5) {
 
         n = Math.abs(n) % 100;
         long n1 = n % 10;
-        if (n > 10 && n < 20) return from5;
-        if (n1 > 1 && n1 < 5) return from2;
-        if (n1 == 1) return from1;
-        return from5;
+        if (n > 10 && n < 20) return form5;
+        if (n1 > 1 && n1 < 5) return form2;
+        if (n1 == 1) return form1;
+        return form5;
     }
-
+    /**
+     * This is the method to divide number into segments.
+     * for example 12345678 will be divided into [12, 345, 678]
+     * @param number enter number.
+     * @return ArrayList List of segments.
+     */
     private ArrayList divideIntoSegments(BigInteger number){
 
         ArrayList segments = new ArrayList();
@@ -151,7 +183,11 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
 
         return segments;
     }
-
+    /**
+     * This is the method to read forms of number from referenceBook.
+     *
+     * @return String[][] This return matrix of forms.
+     */
     private String[][] readFormsFromFile(){
         BufferedReader bf = null;
         try {
@@ -197,14 +233,6 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
 
         return null;
 
-    }
-
-    public BigInteger getAmount() {
-        return amount;
-    }
-
-    public void setAmount(BigInteger amount) {
-        this.amount = amount;
     }
 
 }
