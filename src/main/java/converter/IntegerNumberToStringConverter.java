@@ -50,7 +50,6 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
      * @throws NumberLengthException when number is bigger than the last value in referenceBook .
      * @see NumberLengthException .
      */
-
     public String convert() throws NumberLengthException {
 
         BigInteger number = amount;
@@ -82,6 +81,7 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
 
         return result;
     }
+
     /**
      * This method converts all number's segments to words.
      *
@@ -144,9 +144,11 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
 
         return result;
     }
+
     /**
      * This is the method to check what form for number.
      * For example if 1 - return form1, if 2-5 - return form2 and other form5
+     *
      * @param n it current segment
      * @param form1 first form
      * @param form2 second form
@@ -162,9 +164,11 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
         if (n1 == 1) return form1;
         return form5;
     }
+
     /**
      * This is the method to divide number into segments.
      * for example 12345678 will be divided into [12, 345, 678]
+     *
      * @param number enter number.
      * @return ArrayList List of segments.
      */
@@ -183,6 +187,7 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
 
         return segments;
     }
+
     /**
      * This is the method to read forms of number from referenceBook.
      *
