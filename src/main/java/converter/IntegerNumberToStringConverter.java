@@ -1,6 +1,5 @@
 package converter;
 
-import exceptions.CustomNumberFormatException;
 import exceptions.NumberLengthException;
 
 import java.io.BufferedReader;
@@ -10,8 +9,6 @@ import java.io.InputStreamReader;
 import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.Collections;
-
-import static java.lang.System.exit;
 
 /**
  * Implementation of {@link NumberConverter}
@@ -26,12 +23,8 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
     private static final String FILE_PATH = "src/main/resources/referenceBook.txt";
 
 
-    public IntegerNumberToStringConverter(String s) throws CustomNumberFormatException {
-        try {
-            this.amount = new BigInteger(s);
-        }catch (NumberFormatException e){
-            throw new CustomNumberFormatException("Please enter ONLY numbers");
-        }
+    public IntegerNumberToStringConverter(String s) throws NumberFormatException {
+        this.amount = new BigInteger(s);
     }
 
     public IntegerNumberToStringConverter(BigInteger bigNumber) {

@@ -1,6 +1,5 @@
 package converter;
 
-import exceptions.CustomNumberFormatException;
 import exceptions.NumberLengthException;
 import org.junit.Test;
 
@@ -20,15 +19,15 @@ public class IntegerNumberToStringConverterExceptionsTest {
         converter.convert();
     }
 
-    @Test(expected = CustomNumberFormatException.class)
-    public void customNumberFormatExceptionCheck() throws CustomNumberFormatException {
+    @Test(expected = NumberFormatException.class)
+    public void customNumberFormatExceptionCheck() throws NumberFormatException {
 
         new IntegerNumberToStringConverter("asdvasas");
 
     }
 
-    @Test(expected = CustomNumberFormatException.class)
-    public void customNumberFormatExceptionCheck2() throws CustomNumberFormatException {
+    @Test(expected = NumberFormatException.class)
+    public void customNumberFormatExceptionCheck2() throws NumberFormatException {
 
         new IntegerNumberToStringConverter("12341234123b");
 

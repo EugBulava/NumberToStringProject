@@ -1,15 +1,12 @@
 package mainApp;
 
 
-import exceptions.CustomNumberFormatException;
 import exceptions.NumberLengthException;
 import converter.IntegerNumberToStringConverter;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-
-import static java.lang.System.exit;
 
 /**
  * Main app - entry point
@@ -30,8 +27,8 @@ public class ConverterMainApp {
         catch (NumberLengthException ex) {
             System.out.println(ex.getMessage());
         }
-        catch (CustomNumberFormatException e){
-            System.out.println(e.getMessage());
+        catch (NumberFormatException e){
+            System.out.println("Please, enter only numbers. " + e.getMessage());
         }
     }
 }
