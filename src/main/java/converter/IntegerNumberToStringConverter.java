@@ -71,17 +71,17 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
                 number = number.abs();
             }
 
-            BigInteger number_tmp = number;
+            BigInteger tempNumber = number;
 
             ArrayList segments = new ArrayList();
             // segmented number and add to list
-            while (number_tmp.compareTo(new BigInteger("999")) == 1) {
-                BigInteger segment = number_tmp.divide(new BigInteger("1000"));
-                segments.add(number_tmp.add(segment.multiply(new BigInteger("1000")).negate()));
-                number_tmp = segment;
+            while (tempNumber.compareTo(new BigInteger("999")) == 1) {
+                BigInteger segment = tempNumber.divide(new BigInteger("1000"));
+                segments.add(tempNumber.add(segment.multiply(new BigInteger("1000")).negate()));
+                tempNumber = segment;
             }
 
-            segments.add(number_tmp);
+            segments.add(tempNumber);
             Collections.reverse(segments);
 
             int level = segments.size() - 1;
@@ -89,24 +89,24 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
 
             for (int i = 0; i < segments.size(); i++) {
                 int kind = Integer.valueOf(forms[level][3].toString()); //check gender
-                int current_seg = Integer.valueOf(segments.get(i).toString()); //current segment
+                int currentSegment = Integer.valueOf(segments.get(i).toString()); //current segment
 
-                if (current_seg == 0 && level >= 1) {
+                if (currentSegment == 0 && level >= 1) {
                     level--;
                     continue;
                 }
 
-                String seg_string = String.valueOf(current_seg);
+                String segmentString = String.valueOf(currentSegment);
 
-                if (seg_string.length() == 1) seg_string = "00" + seg_string; // check length of segment and add "0"
-                if (seg_string.length() == 2) seg_string = "0" + seg_string; // or "00"
+                if (segmentString.length() == 1) segmentString = "00" + segmentString; // check length of segment and add "0"
+                if (segmentString.length() == 2) segmentString = "0" + segmentString; // or "00"
 
-                int r1 = Integer.valueOf(seg_string.substring(0, 1)); // divide the segment 1**
-                int r2 = Integer.valueOf(seg_string.substring(1, 2)); // *2*
-                int r3 = Integer.valueOf(seg_string.substring(2, 3)); // **3
-                int r23 = Integer.valueOf(seg_string.substring(1, 3));// *23
+                int r1 = Integer.valueOf(segmentString.substring(0, 1)); // divide the segment 1**
+                int r2 = Integer.valueOf(segmentString.substring(1, 2)); // *2*
+                int r3 = Integer.valueOf(segmentString.substring(2, 3)); // **3
+                int r23 = Integer.valueOf(segmentString.substring(1, 3));// *23
 
-                    if (current_seg > 99) result += str100[r1] + " ";
+                    if (currentSegment > 99) result += str100[r1] + " ";
 
                 if (r23 > 20) {
                     result += str10[r2] + " ";
@@ -119,7 +119,7 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
                     else
                         result += kinds[kind][r3] + " ";
                 }
-                result += morph(current_seg, forms[level][0], forms[level][1], forms[level][2]) + " ";
+                result += morph(currentSegment, forms[level][0], forms[level][1], forms[level][2]) + " ";
                 level--;
             }
             //result
