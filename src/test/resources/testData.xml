@@ -5,7 +5,7 @@
         <expectedResult>двести тридцать две тысячи четыреста сорок четыре</expectedResult>
     </test>
     <test>
-        <number>100000000000000000000000000000000</number>
+        <number>1000000000000000000000000000000000</number>
         <expectedResult>один дециллион</expectedResult>
     </test>
     <test>
@@ -13,7 +13,7 @@
         <expectedResult>ноль</expectedResult>
     </test>
     <test>
-        <number>200250000110000055500000055500</number>
+        <number>2002560000110000055500000055500</number>
         <expectedResult>два нониллиона два октиллиона пятьсот шестьдесят септиллионов сто десять квинтиллионов пятьдесят пять триллионов пятьсот  миллиардов пятьдесят пять тысяч пятьсот</expectedResult>
     </test>
 </testData>
