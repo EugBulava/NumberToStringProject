@@ -17,18 +17,24 @@ import java.util.Collections;
  * @author Eugene Bulava
  */
 public class IntegerNumberToStringConverter implements NumberConverter<String> {
+
+    //input value
     private BigInteger amount;
 
+    //forms of type number
+    String[][] forms;
 
     private static final String FILE_PATH = "src/main/resources/referenceBook.txt";
 
 
     public IntegerNumberToStringConverter(String s) throws NumberFormatException {
         this.amount = new BigInteger(s);
+        this.forms = readFormsFromFile();
     }
 
     public IntegerNumberToStringConverter(BigInteger bigNumber) {
         this.amount = bigNumber;
+        this.forms = readFormsFromFile();
     }
 
     public static String morph(long n, String from1, String from2, String from5) {
@@ -51,8 +57,6 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
         String[] str100 = {"", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"};
         String[] str11 = {"", "десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать", "двадцать"};
         String[] str10 = {"", "десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"};
-        //forms of type number
-        String[][] forms = readFormsFromFile();
 
         BigInteger number = amount;
 
@@ -132,8 +136,9 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
     }
 
     private String[][] readFormsFromFile(){
+        BufferedReader bf = null;
         try {
-            BufferedReader bf = new BufferedReader(new InputStreamReader(new FileInputStream(FILE_PATH), "utf-8"));
+            bf = new BufferedReader(new InputStreamReader(new FileInputStream(FILE_PATH), "utf-8"));
             ArrayList<String> list = new ArrayList<String>();
 
             String line;
@@ -162,6 +167,15 @@ public class IntegerNumberToStringConverter implements NumberConverter<String> {
             return result;
         } catch (IOException e) {
             System.out.println(e.getMessage());
+        } finally{
+            try{
+                if(bf != null) {
+                    bf.close();
+                }
+            }
+            catch(IOException ex){
+                System.out.println(ex.getMessage());
+            }
         }
 
         return null;
