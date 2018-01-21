@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testData>
+    <test>
+        <number>232444</number>
+        <expectedResult>двести тридцать две тысячи четыреста сорок четыре</expectedResult>
+    </test>
+    <test>
+        <number>100000000000000000000000000000000</number>
+        <expectedResult>один дециллион</expectedResult>
+    </test>
+    <test>
+        <number>0</number>
+        <expectedResult>ноль</expectedResult>
+    </test>
+    <test>
+        <number>200250000110000055500000055500</number>
+        <expectedResult>два нониллиона два октиллиона пятьсот шестьдесят септиллионов сто десять квинтиллионов пятьдесят пять триллионов пятьсот  миллиардов пятьдесят пять тысяч пятьсот</expectedResult>
+    </test>
+</testData>
